@@ -30,6 +30,7 @@ import 'elements/emby-button/paper-icon-button-light';
 import './card.scss';
 import '../guide/programs.scss';
 import {
+    convertLangToCountry,
     getDesiredAspect,
     getPostersPerRow,
     isResizable,
@@ -50,6 +51,7 @@ const enableFocusTransform = !browser.slow && !browser.edge;
  * @returns {string} The HTML markup for the cards.
  */
 export function getCardsHtml(items, options) {
+    console.log(items);
     if (arguments.length === 1) {
         options = arguments[0];
         items = options.items;
@@ -637,6 +639,7 @@ function getCardFooterText(item, apiClient, options, footerClass, progressHtml, 
                     lines.push(productionYear || '');
                 }
             } else {
+                lines.push(getLanguagesHtml(item));
                 lines.push(productionYear || '');
             }
         }
@@ -1131,6 +1134,23 @@ function buildCard(index, item, apiClient, options) {
     }
 
     return '<' + tagName + ' data-index="' + index + '"' + timerAttributes + actionAttribute + ' data-isfolder="' + (item.IsFolder || false) + '" data-serverid="' + (item.ServerId || options.serverId) + '" data-id="' + (item.Id || item.ItemId) + '" data-type="' + item.Type + '"' + mediaTypeData + collectionTypeData + channelIdData + pathData + positionTicksData + collectionIdData + playlistIdData + contextData + parentIdData + startDate + endDate + ' data-prefix="' + escapeHtml(prefix) + '" class="' + className + '"' + ariaLabelAttribute + '>' + cardImageContainerOpen + innerCardFooter + cardImageContainerClose + overlayButtons + additionalCardContent + cardScalableClose + outerCardFooter + cardBoxClose + '</' + tagName + '>';
+}
+
+function getLanguagesHtml(item) {
+    let html = '<div class="cardLanguages">';
+    if (item.AudioLanguages && item.AudioLanguages.length) {
+        for (const lang of item.AudioLanguages) {
+            html += '<img src="assets/img/flags/' + convertLangToCountry(lang).toLowerCase() + '.png" class="cardLanguageFlag" alt="' + lang + '" title="' + lang + '"/>';
+        }
+    }
+    if (item.SubtitleLanguages && item.SubtitleLanguages.length) {
+        html += '<p class="cardLanguageSeparator">/</p>';
+        for (const lang of item.SubtitleLanguages) {
+            html += '<img src="assets/img/flags/' + convertLangToCountry(lang).toLowerCase() + '.png" class="cardLanguageFlag" alt="' + lang + '" title="' + lang + '"/>';
+        }
+    }
+    html += '</div>';
+    return html;
 }
 
 /**

@@ -81,6 +81,70 @@ type CardCssClassOpts = {
 };
 
 /**
+ * Converts a 3-letter language code to a country code.
+ * @param langCode3 - 3-letter language code.
+ * @returns {string} - 2-letter country code or the original language code if not found.
+ */
+export function convertLangToCountry(langCode3: string): string {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return langToCountryMap[langCode3.toLowerCase()] || langCode3;
+}
+
+const langToCountryMap = {
+    afr: 'ZA', // Afrikaans - South Africa
+    ara: 'SA', // Arabic - Saudi Arabia
+    ben: 'BD', // Bengali - Bangladesh
+    bul: 'BG', // Bulgarian - Bulgaria
+    cat: 'ES', // Catalan - Spain
+    ces: 'CZ', // Czech - Czech Republic
+    cym: 'GB', // Welsh - United Kingdom
+    dan: 'DK', // Danish - Denmark
+    deu: 'DE', // German - Germany
+    ell: 'GR', // Greek - Greece
+    eng: 'US', // English - United States
+    epo: 'PL', // Esperanto - Poland (common hub)
+    est: 'EE', // Estonian - Estonia
+    fin: 'FI', // Finnish - Finland
+    fra: 'FR', // French - France
+    gle: 'IE', // Irish - Ireland
+    guj: 'IN', // Gujarati - India
+    heb: 'IL', // Hebrew - Israel
+    hin: 'IN', // Hindi - India
+    hrv: 'HR', // Croatian - Croatia
+    hun: 'HU', // Hungarian - Hungary
+    ind: 'ID', // Indonesian - Indonesia
+    ita: 'IT', // Italian - Italy
+    jpn: 'JP', // Japanese - Japan
+    kor: 'KR', // Korean - South Korea
+    lav: 'LV', // Latvian - Latvia
+    lit: 'LT', // Lithuanian - Lithuania
+    mal: 'IN', // Malayalam - India
+    mar: 'IN', // Marathi - India
+    msa: 'MY', // Malay - Malaysia
+    nld: 'NL', // Dutch - Netherlands
+    nor: 'NO', // Norwegian - Norway
+    pan: 'IN', // Punjabi - India
+    pol: 'PL', // Polish - Poland
+    por: 'BR', // Portuguese - Brazil
+    ron: 'RO', // Romanian - Romania
+    rus: 'RU', // Russian - Russia
+    slk: 'SK', // Slovak - Slovakia
+    slv: 'SI', // Slovenian - Slovenia
+    spa: 'ES', // Spanish - Spain
+    srp: 'RS', // Serbian - Serbia
+    swe: 'SE', // Swedish - Sweden
+    tam: 'IN', // Tamil - India
+    tel: 'IN', // Telugu - India
+    tha: 'TH', // Thai - Thailand
+    tur: 'TR', // Turkish - Turkey
+    ukr: 'UA', // Ukrainian - Ukraine
+    urd: 'PK', // Urdu - Pakistan
+    vie: 'VN', // Vietnamese - Vietnam
+    zho: 'CN' // Chinese - China
+};
+
+/**
  * Resolves applicable Card CSS classes
  * @param opts options for determining which CSS classes are applicable
  */

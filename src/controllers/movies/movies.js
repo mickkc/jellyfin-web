@@ -277,7 +277,7 @@ export default function (view, params, tabContent, options) {
         SortOrder: 'Ascending',
         IncludeItemTypes: 'Movie',
         Recursive: true,
-        Fields: 'PrimaryImageAspectRatio,MediaSourceCount,Chapters,Trickplay',
+        Fields: 'PrimaryImageAspectRatio,MediaSourceCount,Chapters,Trickplay,Languages',
         ImageTypeLimit: 1,
         EnableImageTypes: 'Primary,Backdrop,Banner,Thumb',
         StartIndex: 0,

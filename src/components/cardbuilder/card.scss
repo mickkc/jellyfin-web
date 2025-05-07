@@ -850,6 +850,26 @@ button::-moz-focus-inner {
     background: transparent !important;
 }
 
+.cardLanguages {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25em;
+    height: fit-content;
+}
+
+
+.cardLanguageFlag {
+    height: 1em;
+}
+
+.cardLanguageSeparator {
+    padding: 0 0.25em;
+    margin: 0 !important;
+}
+
 .card-hoverable:hover .cardOverlayButton-hover {
     opacity: 1;
 }
